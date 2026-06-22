@@ -4,10 +4,13 @@
 #include <set>
 #include <vector>
 
-using Grid = std::vector<std::vector<char>>;
+std::vector<std::string> grid { "qwertyuiop",
+                                "asdfghjkl",
+                                "zxcvbnm"};
 
-void bfs(const Grid& grid, const char root) {
+int bfs(const char root, const char goal) {
     std::queue<char> queue {};
+    std::vector<char> explored {};
     queue.push(root);
     std::set<char> set {};
 
@@ -17,14 +20,11 @@ void bfs(const Grid& grid, const char root) {
 
 
     }
+    return 0;
 }
 
 int main() {
-    Grid grid {
-            {'q','w','e','r','t','y','u','i','o','p'},
-            {'a','s','d','f','g','h','j','k','l'},
-            {'z','x','c','v','b','n','m'},
-        };
+
 
     int numCases {};
     std::cin >> numCases;
@@ -34,7 +34,13 @@ int main() {
         std::cin >> str >> numSpellings;
         std::pair<int, std::string> loc{};
         while (numSpellings--) {
+            std::string typed;
+            std::cin >> typed;
+            int dist {0};
 
+            for (int i {0}; i < str.length(); i++) {
+                dist += bfs(str[i], typed[i]);
+            }
         }
 
 
@@ -44,7 +50,7 @@ int main() {
 
     for (const std::vector<char>& node : grid) {
         int n {static_cast<int>(node.capacity())};
-        for (int i {0}; i < n+10; i++) {
+        for (int i {0}; i < n; i++) {
             if (node[i] >= 'a' && node[i] <= 'z')
 
                 std::cout << node[i] <<  " ";
