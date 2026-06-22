@@ -64,7 +64,7 @@ int main() {
 
         }
         std::sort(output.begin(), output.end());
-        for (auto&[typed, dist] : output) std::cout << typed << " " << dist << std::endl;
+        for (auto&[dist, typed] : output) std::cout << typed << " " << dist << std::endl;
     }
     return 0;
 }
